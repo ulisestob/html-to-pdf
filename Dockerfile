@@ -1,13 +1,10 @@
-FROM node:18-alpine
+FROM node:18-slim
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     wkhtmltopdf \
-    ttf-dejavu \
-    font-noto \
-    font-noto-cjk \
-    font-noto-emoji \
+    fonts-dejavu \
     fontconfig \
-    ttf-mscorefonts-installer && fc-cache -f
+    && apt-get clean
 
 WORKDIR /app
 
